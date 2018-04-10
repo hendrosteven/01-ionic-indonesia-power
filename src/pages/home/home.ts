@@ -5,6 +5,7 @@ import { Todo } from '../../classes/todo';
 import { DetailPage } from '../detail/detail';
 import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators/debounceTime';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-home',
@@ -19,8 +20,15 @@ export class HomePage {
   todosOriginal: Todo[] = [];
   found: boolean = true;
 
-  constructor(public navCtrl: NavController, private modalCtrl: ModalController, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, private modalCtrl: ModalController, private alertCtrl: AlertController, private storage: Storage) {
       this.searchControl = new FormControl();
+      //baca dari storage
+      this.storage.get('todos').then((val) => {
+        if(val){
+          this.todos = val;
+          this.todosOriginal = val;
+        }
+      });
   }
 
   onAdd(){
@@ -29,6 +37,7 @@ export class HomePage {
       if(todo){
         this.todos.push(todo);
         this.todosOriginal.push(todo);
+        this.storage.set("todos",this.todosOriginal);
         let alert = this.alertCtrl.create({title: "Success", message: "Todo saved!", buttons:['Ok']});
         alert.present();
       }
@@ -46,6 +55,7 @@ export class HomePage {
     });
     this.todos = temp;
     this.todosOriginal = temp;
+    this.storage.set("todos",this.todosOriginal);
   }
 
   onSearch(){
