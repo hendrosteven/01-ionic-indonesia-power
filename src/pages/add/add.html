@@ -3,22 +3,31 @@
   <ion-navbar color="bukalapak">
     <ion-title>Add Todo</ion-title>
     <ion-buttons right>
-        <button ion-button (click)="closeModal();">
-                  <ion-icon name="close"></ion-icon>
-              </button>
-      </ion-buttons>  
+      <button ion-button (click)="closeModal();">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-    <ion-item>
-        <ion-label floating>Todo</ion-label>
-        <ion-input type="text" [(ngModel)]="todo"></ion-input>
-      </ion-item>
+  <ion-item>
+    <ion-label floating>Title</ion-label>
+    <ion-input type="text" [(ngModel)]="todo.title"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Location</ion-label>
+    <ion-input type="text" [(ngModel)]="todo.location"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Description</ion-label>
+    <ion-input type="text" [(ngModel)]="todo.description"></ion-input>
+  </ion-item>
+
 </ion-content>
- 
+
 <ion-footer no-border padding>
-    <button ion-button color="bukalapak" block (click)="onSave()"> Save</button>
+  <button ion-button color="bukalapak" block (click)="onSave()"> Save</button>
 </ion-footer>

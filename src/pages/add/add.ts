@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { Todo } from '../../classes/todo';
 
 
 @IonicPage()
@@ -9,7 +10,7 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 })
 export class AddPage {
 
-  todo: string = '';
+  todo: Todo = new Todo();
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController) {
   }
